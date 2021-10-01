@@ -1,4 +1,4 @@
-# Starter aplication fro react 17.0.2 with typescript, eslint and prettier
+# Starter aplication for react 17.0.2 with typescript, eslint and prettier
 
 # Getting Started with Create React App
 
