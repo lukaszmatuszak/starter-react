@@ -1,3 +1,5 @@
+# Starter aplication fro react 17.0.2 with typescript, eslint and prettier
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
