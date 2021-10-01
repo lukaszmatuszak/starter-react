@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-
+    name: CI/CD
     runs-on: ubuntu-latest
 
     strategy:
