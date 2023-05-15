@@ -1,0 +1,17 @@
+name: 'BUMP VERSION'
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Bumping version
+        uses: jpb06/bump-package@latest
+        with:
+          should-default-to-patch: true
