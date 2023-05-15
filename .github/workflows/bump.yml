@@ -1,17 +1,32 @@
 name: 'BUMP VERSION'
 on:
-  push:
+  pull_request:
     branches:
       - master
+    types:
+      - closed
 
 jobs:
-  bump:
+  merge_pr:
+    name: 'PR Merged'
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
-
-      - name: Bumping version
-        uses: jpb06/bump-package@latest
+      - uses: actions/checkout@v2
         with:
-          should-default-to-patch: true
+          token: ${{ secrets.GH_ORG_PAT }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+          cache: 'npm'
+      - name: Git config
+        run: |
+          git config --global user.email "${{ secrets.GH_ORG_EMAIL }}"
+          git config --global user.name "${{ secrets.GH_ORG_NAME }}"
+      - name: Apply version bump (patch)
+        run: npm version patch
+      - name: Git push version bump
+        run: git push origin dev --follow-tags --force
+      - id: set-version
+        name: Output version change
+        run: npm pkg get version
