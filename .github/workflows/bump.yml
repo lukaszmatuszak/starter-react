@@ -18,15 +18,13 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '16.x'
-          cache: 'npm'
       - name: Git config
         run: |
           git config --global user.email "${{ secrets.GH_ORG_EMAIL }}"
           git config --global user.name "${{ secrets.GH_ORG_NAME }}"
       - name: Apply version bump (patch)
-        run: yarn version
+        uses: borales/actions-yarn@v4
+        with: 
+          cmd: version --patch
       - name: Git push version bump
         run: git push origin master --follow-tags --force
-      - id: set-version
-        name: Output version change
-        run: npm pkg get version
