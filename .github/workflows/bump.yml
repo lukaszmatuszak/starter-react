@@ -2,7 +2,7 @@ name: 'BUMP VERSION'
 on:
   push:
     branches:
-      - development
+      - master
 
 jobs:
   bump:
